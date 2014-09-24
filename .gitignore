@@ -1,0 +1,14 @@
+# Folders
+
+Scripts/
+Lib/
+Include/
+.idea/
+bin/
+
+# File
+.project
+.pydevproject
+.log
+.Python
+*.DS_Store
