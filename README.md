@@ -28,14 +28,15 @@ Usage Below
 
 #### Usage:-
 
-> from gauth import GAuth
-
-> from gbuild import GBuild
+```
+from gauth import GAuth
+from gbuild import GBuild
+```
 
 Initialize a GAuth Object:-
-
-> appauth = GAuth(scope, storetoken, apikeyfile, redirecturi)
-
+```
+appauth = GAuth(scope, storetoken, apikeyfile, redirecturi)
+```
 Args are defined here in principal:-
 
 http://google-api-python-client.googlecode.com/hg/docs/epy/oauth2client.client.OAuth2WebServerFlow-class.html
@@ -44,15 +45,15 @@ The storetoken file is a location for you to decide to save token base informati
 can get from Google API Console when starting an application project.
 
 Get Auth http object (needed to build a Google App Service):-
-
-> appauth.auth
-
+```
+appauth.auth
+```
 Thats that for Google Auth.
 
 To build a Google Application:-
-
-> process = GBuild(servicename, apiversion , http)
-
+```
+process = GBuild(servicename, apiversion , http)
+```
 Args are defined here in principal:-
 
 https://google-api-python-client.googlecode.com/hg/docs/epy/apiclient.discovery-module.html
