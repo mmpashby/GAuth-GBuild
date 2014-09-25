@@ -6,13 +6,13 @@ Helper Python Classes to assist with setting up authorization to Google API serv
 
 The following modules are required to run these helper classes:-
 
-* OS
+* OS (STANDARD LIB)
 * HTTPLIB2
 * GOOGLE API CLIENT
 * OAUTH2CLIENT
-
-> pip install --upgrade httplib2 oauth2client google-api-python-client
-
+```
+pip install --upgrade httplib2 oauth2client google-api-python-client
+```
 #### Installation
 
 Useable on Windows/Linux/OSX x86/64 platforms.
@@ -65,7 +65,7 @@ appauth.auth returns a http object.
 
 A Resource object with methods for interacting with the service.
 
-Full Example Of Google API Calendar:-
+#### Full Example Of Google API Calendar:-
 
 ```
 from gauth import GAuth
@@ -74,7 +74,7 @@ from gbuild import GBuild
 appauth = GAuth('https://www.googleapis.com/auth/calendar', 'token.data', 'apikeys.json', 'urn:ietf:wg:oauth:2.0:oob')
 
 process = GBuild('calendar', 'v3', appauth.auth)
-calid = domain.com_989ujpjpojpojporjpojpojpoj@group.calendar.google.com
+calid = exampledomain.com_989ujpjpojpojporjpojpojpoj@group.calendar.google.com
 
 event = {
   'summary': 'Appointment',
@@ -93,11 +93,12 @@ event = {
     # ...
   ],
 }
-
 process.events().insert(calendarId=calid, body=event).execute()
 
 ```
+#### Bug Reports
 
+Send directly to author.
 
 
 
