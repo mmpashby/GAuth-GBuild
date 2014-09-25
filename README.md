@@ -65,7 +65,7 @@ appauth.auth returns a http object.
 
 A Resource object with methods for interacting with the service.
 
-#### Full Example Of Google API Calendar:-
+#### Full Example Of Google API Calendar Use:-
 
 ```
 from gauth import GAuth
