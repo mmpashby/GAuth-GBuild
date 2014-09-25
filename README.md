@@ -1,8 +1,8 @@
-## GAuth & GBuild ##
+# GAuth & GBuild
 
 Helper Python Classes to assist with setting up authorization to Google API servers & then building a Google Service.
 
-##### Dependencies
+#### Dependencies
 
 The following modules are required to run these helper classes:-
 
@@ -13,7 +13,7 @@ The following modules are required to run these helper classes:-
 
 > pip install --upgrade httplib2 oauth2client google-api-python-client
 
-##### Installation
+#### Installation
 
 Useable on Windows/Linux/OSX x86/64 platforms.
 
@@ -26,7 +26,7 @@ git clone git@github.com:Pashbee/GAuth-GBuild.git
 
 Usage Below
 
-##### Usage:-
+#### Usage:-
 
 > from gauth import GAuth
 
