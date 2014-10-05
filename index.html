@@ -31,37 +31,115 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+        <h1>
+<a name="gauth--gbuild" class="anchor" href="#gauth--gbuild"><span class="octicon octicon-link"></span></a>GAuth &amp; GBuild</h1>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+<p>Helper Python Classes to assist with setting up authorization to Google API servers &amp; then building a Google Service.</p>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
+<h4>
+<a name="dependencies" class="anchor" href="#dependencies"><span class="octicon octicon-link"></span></a>Dependencies</h4>
+
+<p>The following modules are required to run these helper classes:-</p>
+
+<ul>
+<li>OS (STANDARD LIB)</li>
+<li>HTTPLIB2</li>
+<li>GOOGLE API CLIENT</li>
+<li>OAUTH2CLIENT</li>
+</ul><pre><code>pip install --upgrade httplib2 oauth2client google-api-python-client
 </code></pre>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+<h4>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h4>
 
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+<p>Useable on Windows/Linux/OSX x86/64 platforms.</p>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+<pre><code>mkdir projfolder
+cd projfolder
+git clone git@github.com:Pashbee/GAuth-GBuild.git
 
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
+</code></pre>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+<p>Usage Below</p>
 
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+<h4>
+<a name="usage-" class="anchor" href="#usage-"><span class="octicon octicon-link"></span></a>Usage:-</h4>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+<pre><code>from gauth import GAuth
+from gbuild import GBuild
+</code></pre>
 
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+<p>Initialize a GAuth Object:-</p>
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+<pre><code>appauth = GAuth(scope, storetoken, apikeyfile, redirecturi)
+</code></pre>
+
+<p>Args are defined here in principal:-</p>
+
+<p><a href="http://google-api-python-client.googlecode.com/hg/docs/epy/oauth2client.client.OAuth2WebServerFlow-class.html">http://google-api-python-client.googlecode.com/hg/docs/epy/oauth2client.client.OAuth2WebServerFlow-class.html</a></p>
+
+<p>The storetoken file is a location for you to decide to save token base information to. The apikeyfile is the json formatted credentials you
+can get from Google API Console when starting an application project.</p>
+
+<p>Get Auth http object (needed to build a Google App Service):-</p>
+
+<pre><code>appauth.auth
+</code></pre>
+
+<p>Thats that for Google Auth.</p>
+
+<p>To build a Google Application:-</p>
+
+<pre><code>process = GBuild(servicename, apiversion , http)
+</code></pre>
+
+<p>Args are defined here in principal:-</p>
+
+<p><a href="https://google-api-python-client.googlecode.com/hg/docs/epy/apiclient.discovery-module.html">https://google-api-python-client.googlecode.com/hg/docs/epy/apiclient.discovery-module.html</a></p>
+
+<p>servicename is name of application service being build (ie. calendar, docs). apiversion is google api version being used, v3 recommended.</p>
+
+<p>http is httplib2.Http, An instance of httplib2.Http or something that acts like it that HTTP requests will be made through. In this case
+appauth.auth returns a http object.</p>
+
+<p>A Resource object with methods for interacting with the service.</p>
+
+<h4>
+<a name="full-example-of-google-api-calendar-use-" class="anchor" href="#full-example-of-google-api-calendar-use-"><span class="octicon octicon-link"></span></a>Full Example Of Google API Calendar Use:-</h4>
+
+<pre><code>from gauth import GAuth
+from gbuild import GBuild
+
+appauth = GAuth('https://www.googleapis.com/auth/calendar', 'token.data', 'apikeys.json', 'urn:ietf:wg:oauth:2.0:oob')
+
+process = GBuild('calendar', 'v3', appauth.auth)
+calid = exampledomain.com_989ujpjpojpojporjpojpojpoj@group.calendar.google.com
+
+event = {
+  'summary': 'Appointment',
+  'location': 'Somewhere',
+  'start': {
+    'dateTime': '2011-06-03T10:00:00.000-07:00'
+  },
+  'end': {
+    'dateTime': '2011-06-03T10:25:00.000-07:00'
+  },
+  'attendees': [
+    {
+      'email': 'attendeeEmail',
+      # Other attendee's data...
+    },
+    # ...
+  ],
+}
+process.events().insert(calendarId=calid, body=event).execute()
+
+</code></pre>
+
+<h4>
+<a name="bug-reports" class="anchor" href="#bug-reports"><span class="octicon octicon-link"></span></a>Bug Reports</h4>
+
+<p>Send directly to author.</p>
       </section>
     </div>
 
